@@ -1,20 +1,15 @@
-"""
-
-"""
-
 import math
 
-
-# Add any extra import statements you may need here
-
-
-# Add any helper functions you may need here
-
-
+# This method assumes a demoninations array sorted in ascending order.
 def canGetExactChange(targetMoney, denominations):
-
-
-# Write your code here
+    if targetMoney == 0:
+        return True
+    elif targetMoney > denominations[-1]:
+        return canGetExactChange(targetMoney-denominations[-1], denominations)
+    for i in range(1, len(denominations)):
+        if targetMoney < denominations[i] and targetMoney >= denominations[i-1]:
+            return canGetExactChange(targetMoney-denominations[i-1], denominations)
+    return False
 
 
 # These are the tests we use to determine if the solution is correct.
